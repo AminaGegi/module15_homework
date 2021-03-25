@@ -1,0 +1,72 @@
+/* Chat containers */
+.form {
+    display: flex;
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px 0;
+    width: 50%;
+}
+.text {
+    float: left;
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0px;
+    display: flex;
+    width: 50%;
+}
+.send-message {
+    float: left;
+    display: table;
+    border: 2px solid #0108ff;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    height: 10%;
+    padding: 10px;
+    margin: 10px 0px;
+
+}
+.response-message {
+    float: right;
+    display: table;
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    height: 10%;
+    padding: 10px;
+    margin: 10px 0px;
+}
+.btn {
+    float: left;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: none;
+    cursor: pointer;
+
+    display: flex;
+    margin: 5px 10px;
+    padding: 10px 15px;
+    border-radius: 1px;
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: uppercase;
+    color: white;
+    background: #6e8010;
+}
+#chart {
+    display: flex;
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px 0;
+    width: 50%;
+    height: 500px;
+    overflow: auto;
+    flex-direction: column;
+}

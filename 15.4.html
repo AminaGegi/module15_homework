@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+</head>
+<body>
+<button class="btn j-btn-test">
+    Кнопочка
+</button>
+<div id = "screen"></div>
+<script>
+    const btn = document.querySelector('.j-btn-test');
+    const screen = document.querySelector('#screen')
+
+    const error = () => {
+        screen.innerHTML = 'Информация недоступна';
+    }
+
+    const success = (position) => {
+        console.log('position', position);
+        const latitude  = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        fetch(`https://api.ipgeolocation.io/timezone?apiKey=32bcd4a6e4b548968e7afcdb682ac679&lat=${latitude}&long=${longitude}`)
+            .then((response) => {
+                const result = response.json();
+                return result;
+            })
+            .then((data) => {
+                screen.innerHTML = `<p> временная зона, в которой находится пользователь - ${data.timezone}</p><p>местные дата и время - ${data.date_time_txt}</p>` })
+            .catch(() => {
+                console.log('error');
+            });
+
+    }
+
+    btn.addEventListener('click', () => {
+        if (!navigator.geolocation) {
+            screen.innerHTML = 'Информация недоступна';
+        } else {
+            screen.innerHTML = 'Определение местоположения…';
+            navigator.geolocation.getCurrentPosition(success, error);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+</head>
+<body>
+<button class="btn j-btn-test">
+    Поиск вашей геолокации
+</button>
+<div id = "screen"></div>
+<p id = "status"></p>
+<a id = "map-link" target="_blank"></a>
+<script>
+    const status = document.querySelector('#status');
+    const mapLink = document.querySelector('#map-link');
+    const btn = document.querySelector('.j-btn-test');
+    const screen = document.querySelector('#screen')
+
+    const error = () => {
+        status.textContent = 'Информация о местоположении недоступна';
+    }
+
+    const success = (position) => {
+        console.log('position', position);
+        const latitude  = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        status.textContent = `Широта: ${latitude} °, Долгота: ${longitude} °`;
+        mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+        mapLink.textContent = 'Ссылка на карту';
+    }
+
+    btn.addEventListener('click', () => {
+    screen.innerHTML = `Размеры экрана пользователя: <p> высота = ${window.screen.height}</p><p>ширина = ${window.screen.width}</p>`
+        mapLink.href = '';
+        mapLink.textContent = '';
+
+        if (!navigator.geolocation) {
+            status.textContent = 'Информация о местоположении недоступна';
+        } else {
+            status.textContent = 'Определение местоположения…';
+            navigator.geolocation.getCurrentPosition(success, error);
+        }
+    });
+</script>
+</body>
+</html>
